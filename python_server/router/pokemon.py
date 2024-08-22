@@ -3,7 +3,6 @@ import requests
 
 poke_bp = Blueprint("pokemon", __name__)
 
-
 @poke_bp.route("/<name>", methods=["GET"])
 def get_pokemon(name):
     response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{name}")
