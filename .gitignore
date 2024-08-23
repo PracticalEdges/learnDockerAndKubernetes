@@ -1,3 +1,4 @@
 .venv
 __pycache__
 target
+springboot/transaction-logs/tmlog7.log

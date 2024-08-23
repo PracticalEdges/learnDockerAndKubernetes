@@ -1,0 +1,14 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-MyApplication<myproject>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.github.practicalEdges.learnDockerAndKubernetes.MyApplication",
+			"projectName": "myproject",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		}
+	]
+}
