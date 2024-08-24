@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  // const datee = new Date();
+
+  // useEffect(() => {
+  //   console.log("This is the current date: ", datee);
+	// }, []);
+
 	return (
 		<div className="App">
 			<header className="App-header">

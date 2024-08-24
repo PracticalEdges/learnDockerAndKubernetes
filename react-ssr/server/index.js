@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3006;
 const app = express();
 app.use(express.static("./build"));
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
 	const app = ReactDOMServer.renderToString(<App />);
 	const indexFile = path.resolve("./build/index.html");
 
@@ -22,7 +22,19 @@ app.get("/", (req, res) => {
 		}
 
 		return res.send(
-			data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+			`<!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <title>React App</title>
+                </head>
+                <body>
+                    <noscript>You need to enable JavaScript to run this app.</noscript>
+                    <div id="root">${app}</div>
+                    <script src="/static/js/bundle.js"></script>
+                    <script src="/static/js/1.chunk.js"></script>
+                    <script src="/static/js/main.chunk.js"></script>
+                </body>
+            </html>`
 		);
 	});
 });
