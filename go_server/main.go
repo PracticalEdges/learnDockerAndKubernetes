@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	// "goserver/router"
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
