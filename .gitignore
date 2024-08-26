@@ -9,6 +9,7 @@ springboot/transaction-logs/
 node_modules
 .pnp
 .pnp.js
+migrations
 
 # testing
 coverage
@@ -26,3 +27,4 @@ DS_Store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+react-ssr/.env

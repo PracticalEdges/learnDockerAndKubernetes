@@ -10,13 +10,43 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./server/controllers/crud.js":
+/*!************************************!*\
+  !*** ./server/controllers/crud.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createUser: () => (/* binding */ createUser),\n/* harmony export */   deleteUser: () => (/* binding */ deleteUser),\n/* harmony export */   getUser: () => (/* binding */ getUser),\n/* harmony export */   getUsers: () => (/* binding */ getUsers),\n/* harmony export */   updateUser: () => (/* binding */ updateUser)\n/* harmony export */ });\n/* harmony import */ var _utils_get_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/get_client */ \"./server/utils/get_client.js\");\n\nconst createUser = async (req, res) => {\n  try {\n    const prismaClient = (0,_utils_get_client__WEBPACK_IMPORTED_MODULE_0__.getClient)();\n    const {\n      name,\n      email,\n      bio\n    } = req.body;\n    await prismaClient.user.create({\n      data: {\n        name,\n        email,\n        bio\n      }\n    });\n    return res.status(201).json({\n      message: \"User created\"\n    });\n  } catch (error) {\n    console.error(\"Error creating user\", error);\n    return res.status(500).json({\n      message: \"Error creating user\"\n    });\n  }\n};\nconst deleteUser = async (req, res) => {\n  try {\n    const prismaClient = (0,_utils_get_client__WEBPACK_IMPORTED_MODULE_0__.getClient)();\n    const {\n      id\n    } = req.params;\n    await prismaClient.user.delete({\n      where: {\n        id: parseInt(id)\n      }\n    });\n    return res.status(200).json({\n      message: \"User deleted\"\n    });\n  } catch (error) {\n    console.error(\"Error deleting user\", error);\n    return res.status(500).json({\n      message: \"Error deleting user\"\n    });\n  }\n};\nconst updateUser = async (req, res) => {\n  try {\n    const prismaClient = (0,_utils_get_client__WEBPACK_IMPORTED_MODULE_0__.getClient)();\n    const {\n      id\n    } = req.params;\n    const {\n      name,\n      email,\n      bio\n    } = req.body;\n    await prismaClient.user.update({\n      where: {\n        id: parseInt(id)\n      },\n      data: {\n        name,\n        email,\n        bio\n      }\n    });\n    return res.status(200).json({\n      message: \"User updated\"\n    });\n  } catch (error) {\n    console.error(\"Error updating user\", error);\n    return res.status(500).json({\n      message: \"Error updating user\"\n    });\n  }\n};\nconst getUser = async (req, res) => {\n  try {\n    const prismaClient = (0,_utils_get_client__WEBPACK_IMPORTED_MODULE_0__.getClient)();\n    const {\n      id\n    } = req.params;\n    const user = await prismaClient.user.findUnique({\n      where: {\n        id: parseInt(id)\n      }\n    });\n    return res.status(200).json(user);\n  } catch (error) {\n    console.error(\"Error getting user\", error);\n    return res.status(500).json({\n      message: \"Error getting user\"\n    });\n  }\n};\nconst getUsers = async (req, res) => {\n  try {\n    const prismaClient = (0,_utils_get_client__WEBPACK_IMPORTED_MODULE_0__.getClient)();\n    const users = await prismaClient.user.findMany();\n    return res.status(200).json(users);\n  } catch (error) {\n    console.error(\"Error getting users\", error);\n    return res.status(500).json({\n      message: \"Error getting users\"\n    });\n  }\n};\n\n//# sourceURL=webpack://react-frontend/./server/controllers/crud.js?");
+
+/***/ }),
+
 /***/ "./server/index.js":
 /*!*************************!*\
   !*** ./server/index.js ***!
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _src_App__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/App */ \"./src/App.js\");\n\n\n\n\n\n\nconst PORT = process.env.PORT || 3006;\nconst app = express__WEBPACK_IMPORTED_MODULE_4___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_4___default()[\"static\"](\"./build\"));\napp.get(\"/\", (_, res) => {\n  const app = react_dom_server__WEBPACK_IMPORTED_MODULE_3___default().renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_src_App__WEBPACK_IMPORTED_MODULE_5__[\"default\"], null));\n  const indexFile = path__WEBPACK_IMPORTED_MODULE_0___default().resolve(\"./build/index.html\");\n  fs__WEBPACK_IMPORTED_MODULE_1___default().readFile(indexFile, \"utf8\", (err, data) => {\n    if (err) {\n      console.error(\"Something went wrong:\", err);\n      return res.status(500).send(\"Oops, better luck next time!\");\n    }\n    return res.send(`<!DOCTYPE html>\n            <html lang=\"en\">\n                <head>\n                    <title>React App</title>\n                </head>\n                <body>\n                    <noscript>You need to enable JavaScript to run this app.</noscript>\n                    <div id=\"root\">${app}</div>\n                    <script src=\"/static/js/bundle.js\"></script>\n                    <script src=\"/static/js/1.chunk.js\"></script>\n                    <script src=\"/static/js/main.chunk.js\"></script>\n                </body>\n            </html>`);\n  });\n});\napp.listen(PORT, () => {\n  console.log(`Server is listening on port ${PORT}`);\n});\n\n//# sourceURL=webpack://react-frontend/./server/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _router_crud__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router/crud */ \"./server/router/crud.js\");\n/* harmony import */ var _src_App__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/App */ \"./src/App.js\");\n/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! dotenv */ \"dotenv\");\n/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\ndotenv__WEBPACK_IMPORTED_MODULE_7___default().config();\nconst PORT = process.env.PORT || 3006;\nconst app = express__WEBPACK_IMPORTED_MODULE_4___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_4___default()[\"static\"](\"./build\"));\napp.use('/users', _router_crud__WEBPACK_IMPORTED_MODULE_5__[\"default\"]);\napp.get(\"/\", (_, res) => {\n  const app = react_dom_server__WEBPACK_IMPORTED_MODULE_3___default().renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_src_App__WEBPACK_IMPORTED_MODULE_6__[\"default\"], null));\n  const indexFile = path__WEBPACK_IMPORTED_MODULE_0___default().resolve(\"./build/index.html\");\n  fs__WEBPACK_IMPORTED_MODULE_1___default().readFile(indexFile, \"utf8\", (err, data) => {\n    if (err) {\n      console.error(\"Something went wrong:\", err);\n      return res.status(500).send(\"Oops, better luck next time!\");\n    }\n    return res.send(`<!DOCTYPE html>\n            <html lang=\"en\">\n                <head>\n                    <title>React App</title>\n                </head>\n                <body>\n                    <noscript>You need to enable JavaScript to run this app.</noscript>\n                    <div id=\"root\">${app}</div>\n                    <script src=\"/static/js/bundle.js\"></script>\n                    <script src=\"/static/js/1.chunk.js\"></script>\n                    <script src=\"/static/js/main.chunk.js\"></script>\n                </body>\n            </html>`);\n  });\n});\napp.listen(PORT, () => {\n  console.log(`Server is listening on port ${PORT}`);\n});\n\n//# sourceURL=webpack://react-frontend/./server/index.js?");
+
+/***/ }),
+
+/***/ "./server/router/crud.js":
+/*!*******************************!*\
+  !*** ./server/router/crud.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _controllers_crud__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/crud */ \"./server/controllers/crud.js\");\n\nconst router = (0,express__WEBPACK_IMPORTED_MODULE_0__.Router)();\n\nrouter.post(\"/create\", _controllers_crud__WEBPACK_IMPORTED_MODULE_1__.createUser);\nrouter.delete(\"/delete/:id\", _controllers_crud__WEBPACK_IMPORTED_MODULE_1__.deleteUser);\nrouter.put(\"/update/:id\", _controllers_crud__WEBPACK_IMPORTED_MODULE_1__.updateUser);\nrouter.get(\"/get/:id\", _controllers_crud__WEBPACK_IMPORTED_MODULE_1__.getUser);\nrouter.get(\"/getAll\", _controllers_crud__WEBPACK_IMPORTED_MODULE_1__.getUsers);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://react-frontend/./server/router/crud.js?");
+
+/***/ }),
+
+/***/ "./server/utils/get_client.js":
+/*!************************************!*\
+  !*** ./server/utils/get_client.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getClient: () => (/* binding */ getClient)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n\nconst client = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\nconst getClient = () => {\n  return client;\n};\n\n//# sourceURL=webpack://react-frontend/./server/utils/get_client.js?");
 
 /***/ }),
 
@@ -137,6 +167,26 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 /***/ ((module) => {
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://react-frontend/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
+
+/***/ }),
+
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = require("@prisma/client");
+
+/***/ }),
+
+/***/ "dotenv":
+/*!*************************!*\
+  !*** external "dotenv" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = require("dotenv");
 
 /***/ }),
 
