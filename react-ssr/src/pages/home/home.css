@@ -1,0 +1,40 @@
+.table-holder {
+    display: flex;
+    margin-top: 1.0rem;
+    margin-bottom: 1.0rem;
+    padding: 1.0rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-holder table {
+    width: auto;
+    margin: 0rem auto;
+    border-collapse: collapse;
+}
+
+.table-holder table th {
+    background-color: #ddd;
+    border: 5px solid #c5c5c5;
+    padding: 5px;
+}
+
+.table-holder table td {
+    border: 5px solid #ddd;
+    padding: 5px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.0rem;
+}
+
+.btn-container button {
+    margin: 0.5rem;
+    padding: 0.5rem 1.0rem;
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    cursor: pointer;
+}

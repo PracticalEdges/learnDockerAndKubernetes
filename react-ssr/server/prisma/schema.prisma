@@ -13,4 +13,6 @@ model User {
     bio String?
     email   String   @unique
     name    String?
+    phone   String?
+    gender  String?
 }
