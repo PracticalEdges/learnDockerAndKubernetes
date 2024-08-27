@@ -4,7 +4,7 @@ function Home() {
 	return (
 		<>
 			<div className="btn-container">
-				<button className="btn-user-add">Add User</button>
+				<button className="btn-user-add">Add Users</button>
 			</div>
 			<div className="table-holder">
 				<table className="table">
@@ -15,6 +15,13 @@ function Home() {
 						<th>Gender</th>
 						<th>Bio</th>
 					</tr>
+                    <td>
+                        <td>John</td>
+                        <td>John@doe.com</td>
+                        <td>25</td>
+                        <td>Male</td>
+                        <td>John Doe</td>
+                    </td>
 				</table>
 			</div>
 		</>

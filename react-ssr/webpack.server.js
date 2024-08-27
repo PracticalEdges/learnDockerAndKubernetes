@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
@@ -40,7 +41,8 @@ module.exports = {
 			},
 		],
 	},
-    resolve: {
-        extensions: [".js", ".jsx"],
-    },
+	resolve: {
+		extensions: [".js", ".jsx"],
+	},
+	watch: true,
 };
