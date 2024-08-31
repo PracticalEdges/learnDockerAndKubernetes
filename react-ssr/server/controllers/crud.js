@@ -4,12 +4,14 @@ const createUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         console.log("req.body", req);
-		const { name, email, bio } = req.body;
+		const { name, email, bio, phone, gender } = req.body;
 		await prismaClient.user.create({
 			data: {
 				name,
 				email,
 				bio,
+                gender,
+                phone,
 			},
 		});
         return res.status(201).json({ message: "User created" });

@@ -12,6 +12,7 @@ function Home() {
 		fetch(REACT_APP_API_URL + "/user/getAll")
 			.then((res) => res.json())
 			.then((data) => {
+				console.log(data);
 				setUsers(data);
 			});
 	}, []);

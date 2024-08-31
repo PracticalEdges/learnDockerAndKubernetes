@@ -18,7 +18,7 @@ function Table(props) {
 					<tr>
 						<th>Name</th>
 						<th>Email</th>
-						<th>Age</th>
+						<th>Phone</th>
 						<th>Gender</th>
 						<th>Bio</th>
 					</tr>
@@ -33,9 +33,10 @@ function Table(props) {
 									user.id === selectedUserId ? "selected" : ""
 								}
 							>
-								<td>{user.firstName}</td>
+								<td>{user.name}</td>
 								<td>{user.email}</td>
-								<td>{user.age}</td>
+								<td>{user.phone}</td>
+								<td>{user.gender}</td>
 								<td>{user.bio}</td>
 							</tr>
 						);
