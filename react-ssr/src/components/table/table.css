@@ -25,6 +25,7 @@
     padding: 5px;
 }
 
-.table-holder table tr selected {
-    background-color: #0b50f1;
+.table-holder table tr.selected {
+    background-color: #0b50f1 !important;
+    color: rgb(10, 246, 10) !important;
 }
