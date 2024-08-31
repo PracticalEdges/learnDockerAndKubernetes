@@ -6,3 +6,5 @@ const closeConnection = async (prisma) => {
 		console.error("Error closing connection", error);
 	}
 }
+
+module.exports = { closeConnection };

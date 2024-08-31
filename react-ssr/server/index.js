@@ -1,38 +1,22 @@
-// server/index.js
-import express from "express";
-import React from "react";
-import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
-import App from "../src/App";
-import fs from "fs";
-import path from "path";
-
+require("dotenv").config(); // Load environment variables from .env file
+const express = require("express");
 const app = express();
+const cors = require("cors");
+const userRouter = require("./router/crud");
 
-app.use(express.static("build"));
+app.use(
+	cors({
+		origin: "*",
+		credentials: true,
+	})
+);
 
-app.get("*", (req, res) => {
-	const context = {};
-	const appHtml = renderToString(
-		<StaticRouter location={req.url} context={context}>
-			<App />
-		</StaticRouter>
-	);
+app.use("/user", userRouter);
 
-	const indexFile = path.resolve("./build/index.html");
-	fs.readFile(indexFile, "utf8", (err, data) => {
-		if (err) {
-			console.error("Something went wrong:", err);
-			return res.status(500).send("Oops, better luck next time!");
-		}
+app.use(express.json());
 
-		return res.send(
-			data.replace(
-				'<div id="root"></div>',
-				`<div id="root">${appHtml}</div>`
-			)
-		);
-	});
+app.get("/", (req, res) => {
+	res.send("Hello World");
 });
 
 const PORT = process.env.PORT || 3006;

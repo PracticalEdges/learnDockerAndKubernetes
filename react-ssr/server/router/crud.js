@@ -1,6 +1,7 @@
-import { Router } from "express";
+const { Router } = require("express");
+const { createUser, deleteUser, updateUser, getUser, getUsers } = require("../controllers/crud");
+
 const router = Router();
-import { createUser, deleteUser, updateUser, getUser, getUsers } from "../controllers/crud";
 
 router.post("/create", createUser);
 
@@ -12,4 +13,4 @@ router.get("/get/:id", getUser);
 
 router.get("/getAll", getUsers);
 
-export default router;
+module.exports = router;

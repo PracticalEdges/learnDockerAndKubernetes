@@ -1,6 +1,6 @@
-import { getClient } from "../utils/get_client";
+const { getClient } = require("../utils/get_client");
 
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
     try {
         const prismaClient = getClient();
 		const { name, email, bio } = req.body;
@@ -18,7 +18,8 @@ export const createUser = async (req, res) => {
     }
 };
 
-export const deleteUser = async (req, res) => {
+
+const deleteUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         const { id } = req.params;
@@ -34,7 +35,7 @@ export const deleteUser = async (req, res) => {
     }
 };
 
-export const updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         const { id } = req.params;
@@ -56,7 +57,7 @@ export const updateUser = async (req, res) => {
     }
 };
 
-export const getUser = async (req, res) => {
+const getUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         const { id } = req.params;
@@ -72,7 +73,7 @@ export const getUser = async (req, res) => {
     }
 };
 
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
     try {
         const prismaClient = getClient();
         const users = await prismaClient.user.findMany();
@@ -81,4 +82,12 @@ export const getUsers = async (req, res) => {
         console.error("Error getting users", error);
         return res.status(500).json({ message: "Error getting users" });
     }
+};
+
+module.exports = {
+    createUser,
+    deleteUser,
+    updateUser,
+    getUser,
+    getUsers,
 };

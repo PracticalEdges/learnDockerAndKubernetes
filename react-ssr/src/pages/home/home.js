@@ -5,6 +5,7 @@ function Home() {
 		<>
 			<div className="btn-container">
 				<button className="btn-user-add">Add Users</button>
+				<button className="btn-user-add">Modify Users</button>
 			</div>
 			<div className="table-holder">
 				<table className="table">
@@ -15,13 +16,13 @@ function Home() {
 						<th>Gender</th>
 						<th>Bio</th>
 					</tr>
-                    <td>
-                        <td>John</td>
-                        <td>John@doe.com</td>
-                        <td>25</td>
-                        <td>Male</td>
-                        <td>John Doe</td>
-                    </td>
+					<tr>
+						<td>John</td>
+						<td>John@doe.com</td>
+						<td>25</td>
+						<td>Male</td>
+						<td>John Doe</td>
+					</tr>
 				</table>
 			</div>
 		</>
