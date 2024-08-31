@@ -26,6 +26,7 @@ const deleteUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         const { id } = req.params;
+        console.log("id", id);
         await prismaClient.user.delete({
             where: {
                 id: parseInt(id),

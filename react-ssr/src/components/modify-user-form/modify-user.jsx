@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "./modify-user.css";
-import { set } from "lodash";
 
 function ModifyUser(props) {
     const [name, setName] = useState("");
@@ -14,9 +13,12 @@ function ModifyUser(props) {
     const REACT_APP_API_URL = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
+        if(props.id === null || props.id === undefined) return;
+
         fetch(REACT_APP_API_URL + "/user/get/" + props.id.toString())
             .then((res) => res.json())
             .then((data) => {
+                console.log("data", data);
                 setName(data.name);
                 setEmail(data.email);
                 setPhone(data.phone);
@@ -29,7 +31,6 @@ function ModifyUser(props) {
     }, [props.id])
 
     const ModifyUser = (e) => {
-        e.preventDefault();
         fetch(REACT_APP_API_URL + "/user/update/" + props.id.toString(), {
             method: "PUT",
             headers: {
@@ -44,6 +45,8 @@ function ModifyUser(props) {
             }),
         })
     };
+
+    if (props.id === null || props.id === undefined) return null
 
     if (props.isNotVisible) return null
 
@@ -124,7 +127,7 @@ function ModifyUser(props) {
 
 ModifyUser.propTypes = {
     isNotVisible: PropTypes.bool,
-    id: PropTypes.number,
+    id: PropTypes.number || null || undefined,
 }
 
 export default ModifyUser;

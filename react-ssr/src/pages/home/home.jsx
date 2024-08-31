@@ -5,7 +5,7 @@ import AddUser from "../../components/add-user-form/add-user";
 import ModifyUser from "../../components/modify-user-form/modify-user";
 
 function Home() {
-	const [selectedUser, setSelectedUser] = useState({id: 1});
+	const [selectedUser, setSelectedUser] = useState({ id: 1 });
 	const [users, setUsers] = useState([]);
 	const [isNotVisibleAddUser, setIsNotVisibleAddUser] = useState(true);
 	const [isNotVisibleModifyUser, setIsNotVisibleModifyUser] = useState(true);
@@ -15,9 +15,9 @@ function Home() {
 		fetch(REACT_APP_API_URL + "/user/getAll")
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				console.log("data", data);
 				setUsers(data);
-				setSelectedUser(data[0]);
+				setSelectedUser(data[0] || { id: 1 });
 			});
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -28,14 +28,31 @@ function Home() {
 				<button className="btn-user-add" onClick={() => {
 					setIsNotVisibleAddUser(!isNotVisibleAddUser);
 					setIsNotVisibleModifyUser(true);
+					
 				}}>
 					Add Users
 				</button>
 				<button className="btn-user-modify" onClick={() => {
 					setIsNotVisibleModifyUser(!isNotVisibleModifyUser);
 					setIsNotVisibleAddUser(true);
+					
 				}}>
 					Modify Users
+				</button>
+				<button className="btn-user-modify" onClick={() => {
+					if (selectedUser.id === null || selectedUser.id === undefined) return;
+					fetch(REACT_APP_API_URL + "/user/delete/" + selectedUser.id.toString(), {
+						method: "DELETE",
+					})
+					.then(() => {
+						setSelectedUser({ id: 1 });
+					});	
+
+					// refresh the page
+					window.location.reload();
+
+				}}>
+					Delete Users
 				</button>
 			</div>
 			<AddUser isNotVisible={isNotVisibleAddUser} />

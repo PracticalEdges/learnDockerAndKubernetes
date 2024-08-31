@@ -13,7 +13,6 @@ function AddUser(props){
     const REACT_APP_API_URL = process.env.REACT_APP_BACKEND_URL;
 
     const addUser = (e) => {
-        e.preventDefault();
         fetch(REACT_APP_API_URL + "/user/create", {
             method: "POST",
             headers: {
