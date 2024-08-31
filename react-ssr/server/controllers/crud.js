@@ -42,17 +42,19 @@ const updateUser = async (req, res) => {
     try {
         const prismaClient = getClient();
         const { id } = req.params;
-        const { name, email, bio } = req.body;
+        const { name, email, bio, phone, gender } = req.body;
         await prismaClient.user.update({
-            where: {
-                id: parseInt(id),
-            },
-            data: {
-                name,
-                email,
-                bio,
-            },
-        });
+			where: {
+				id: parseInt(id),
+			},
+			data: {
+				name,
+				email,
+				bio,
+				phone,
+                gender
+			},
+		});
         return res.status(200).json({ message: "User updated" });
     } catch (error) {
         console.error("Error updating user", error);

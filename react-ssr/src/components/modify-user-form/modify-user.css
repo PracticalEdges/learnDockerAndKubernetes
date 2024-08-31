@@ -1,0 +1,36 @@
+/* src/components/add-user-form/add-user.css */
+.mod-user-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    width: 50%;
+}
+
+.mod-user-form input,
+.mod-user-form button {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.mod-user-form button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.mod-user-form button:hover {
+    background-color: #0056b3;
+}
+
+.label-radio {
+    margin: 1rem;
+}
+
+.label-radio input {
+    margin: 0 0.5rem;
+}
