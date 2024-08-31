@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import "./add-user.css";
 
 function AddUser(props){
     const [name, setName] = useState("");
@@ -11,25 +12,28 @@ function AddUser(props){
 
     const REACT_APP_API_URL = process.env.REACT_APP_BACKEND_URL;
 
-    const addUser = () => {
+    const addUser = (e) => {
+        e.preventDefault();
         fetch(REACT_APP_API_URL + "/user/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name,
-                email,
-                phone,
-                gender,
-                bio,
+                name: name,
+                email: email,
+                phone: phone,
+                gender: gender,
+                bio: bio,
             }),
         })
     };
 
+    if(props.isNotVisible) return null
+
     return (
         <>
-            <form onSubmit={addUser} hidden={props.isVisible}>
+            <form className="add-user-form"  onSubmit={addUser}>
                 <input
                     type="text"
                     placeholder="Name"
@@ -64,7 +68,7 @@ function AddUser(props){
                 />
                 <p>Choose a Gender</p>
                 <div>
-                    <label>
+                    <label className="label-radio">
                         <input
                             type="radio"
                             name="gender"
@@ -77,8 +81,9 @@ function AddUser(props){
                         />
                         Male
                     </label>
+                    
 
-                    <label>
+                    <label className="label-radio">
                         <input
                             type="radio"
                             name="gender"
@@ -100,7 +105,7 @@ function AddUser(props){
 }
 
 AddUser.propTypes = {
-    isVisible: PropTypes.bool,
+    isNotVisible: PropTypes.bool,
 }
 
 export default AddUser;

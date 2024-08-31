@@ -2,7 +2,11 @@ require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const userRouter = require("./router/crud");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
 	cors({
@@ -12,8 +16,6 @@ app.use(
 );
 
 app.use("/user", userRouter);
-
-app.use(express.json());
 
 app.get("/", (req, res) => {
 	res.send("Hello World");

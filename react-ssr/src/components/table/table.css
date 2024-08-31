@@ -24,3 +24,7 @@
     border: 5px solid #ddd;
     padding: 5px;
 }
+
+.table-holder table tr selected {
+    background-color: #0b50f1;
+}

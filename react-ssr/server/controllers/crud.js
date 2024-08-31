@@ -3,6 +3,7 @@ const { getClient } = require("../utils/get_client");
 const createUser = async (req, res) => {
     try {
         const prismaClient = getClient();
+        console.log("req.body", req);
 		const { name, email, bio } = req.body;
 		await prismaClient.user.create({
 			data: {
