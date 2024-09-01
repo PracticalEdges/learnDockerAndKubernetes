@@ -29,3 +29,4 @@ yarn-debug.log*
 yarn-error.log*
 react-ssr/.env
 react-ssr/server/.env
+react-app/.env
