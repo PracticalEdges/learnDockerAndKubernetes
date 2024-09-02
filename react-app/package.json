@@ -29,6 +29,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"dev:start": "nodemon ./server/index.js",
+		"start:migrate:prod": "prisma migrate deploy && npm run dev:start",
 		"dev": "npm-run-all --parallel dev:*",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"

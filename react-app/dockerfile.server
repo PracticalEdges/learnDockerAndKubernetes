@@ -1,0 +1,15 @@
+FROM node:22.7.0
+
+WORKDIR /app
+
+COPY package.json /app
+
+RUN npm install
+
+COPY . /app
+
+RUN cd /app/server/prisma && npx prisma generate
+
+EXPOSE 3006
+
+ENTRYPOINT ["./entrypoint-server.sh"]
