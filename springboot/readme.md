@@ -1,6 +1,6 @@
 # Springboot Application
 
-* JAVA SPRINGBOOT APPLICATION for jokes & books
+- JAVA SPRINGBOOT APPLICATION for jokes & books
 
 Run app
 
@@ -12,7 +12,9 @@ java -jar ./target/myproject-0.0.1-SNAPSHOT.jar
 
 1. Try to build the project using maven even on local will work
 
-2. Instructions for dockefile
+2. Visit openjdk on [dockerhub](https://hub.docker.com/_/openjdk/)
+
+3. Instructions for dockefile
 
 ```txt
 1. Fetch the image
