@@ -1,7 +1,5 @@
 {
-  "imports": {
-    "hono": "jsr:@hono/hono@^4.5.5"
-  },
+  "imports": { "hono": "npm:hono@^4.5.11" },
   "tasks": {
     "start": "deno run --allow-net main.ts",
     "build": "deno bundle main.ts main.js"
