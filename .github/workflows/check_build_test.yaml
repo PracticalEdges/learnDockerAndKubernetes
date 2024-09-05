@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'go_server/**'
-      - '.github/workflows/**'
-      - 'node_server/**'
-      - 'react-app/**'
-      - 'python_server/**'
-      - 'springboot/**'
+    # paths:
+    #   - 'go_server/**'
+    #   - '.github/workflows/**'
+    #   - 'node_server/**'
+    #   - 'react-app/**'
+    #   - 'python_server/**'
+    #   - 'springboot/**'
 
 jobs:
   checkout:
