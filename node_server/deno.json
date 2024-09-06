@@ -1,8 +1,14 @@
 {
-  "imports": { "hono": "npm:hono@^4.5.11" },
+  "imports": {
+    "@types/mocha": "npm:@types/mocha@^10.0.7",
+    "chai": "npm:chai@^5.1.1",
+    "hono": "npm:hono@^4.5.11",
+    "mocha": "npm:mocha@^10.7.3"
+  },
   "tasks": {
     "start": "deno run --allow-net main.ts",
-    "build": "deno bundle main.ts main.js"
+    "build": "deno bundle main.ts main.js",
+    "test": "deno test --allow-net ./test/*"
   },
   "compilerOptions": {
     "jsx": "precompile",
