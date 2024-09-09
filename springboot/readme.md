@@ -1,5 +1,7 @@
 # Springboot Application
 
+default port: 8080
+
 - JAVA SPRINGBOOT APPLICATION for jokes & books
 
 Run app
