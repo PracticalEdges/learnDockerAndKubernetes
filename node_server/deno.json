@@ -6,12 +6,13 @@
     "mocha": "npm:mocha@^10.7.3"
   },
   "tasks": {
-    "start": "deno run --allow-net main.ts",
-    "build": "deno bundle main.ts main.js",
-    "test": "deno test --allow-net ./test/*"
-  },
+		"start": "deno run --allow-net main.ts",
+		"build": "deno bundle main.ts main.js",
+		"cache": "deno cache main.ts",
+		"test": "deno test --allow-net ./test/*"
+	},
   "compilerOptions": {
-    "jsx": "precompile",
-    "jsxImportSource": "hono/jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://esm.sh/hono@4.5.11/jsx-runtime"
   }
 }

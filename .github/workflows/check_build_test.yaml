@@ -22,7 +22,7 @@ jobs:
   node:
     runs-on: ubuntu-latest
     needs: checkout
-    if: contains(github.event.head_commit.message, 'node_server') || contains(github.event.head_commit.message, 'react-app')
+    if: contains(github.event.head_commit.message, 'react-app')
     steps:
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -31,16 +31,34 @@ jobs:
 
     - name: Install Node.js dependencies
       run: npm install
-      working-directory: ${{ contains(github.event.head_commit.message, 'node_server') && 'node_server' || 'react-app' }}
+      working-directory: react-app
 
-    - name: Run Node.js tests
+    - name: Run React.js tests
       run: npm test
-      working-directory: ${{ contains(github.event.head_commit.message, 'node_server') && 'node_server' || 'react-app' }}
+      working-directory: react-app
 
     - name: Build Docker image
-      run: docker build . -t node-app
-      working-directory: ${{ contains(github.event.head_commit.message, 'node_server') && 'node_server' || 'react-app' }}
+      run: docker compose build 
+      working-directory: react-app
 
+  deno:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: contains(github.event.head_commit.message, 'node_server')
+    steps:
+    - name: Set up Deno
+      uses: denolib/setup-deno@v2
+      with:
+        deno-version: '1.x'
+
+    - name: Run Deno tests
+      run: deno task test
+      working-directory: deno_server
+
+    - name: Build Docker image
+      run: docker build . -t deno-app
+      working-directory: deno_server
+  
   python:
     runs-on: ubuntu-latest
     needs: checkout
