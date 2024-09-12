@@ -1,0 +1,121 @@
+name: Check Build and Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_service:
+        description: 'Enter the service to build and test (e.g., react-app, node_server, python_server, go_server, springboot)'
+        required: true
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+  node:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: ${{ contains(github.event.inputs.target_service, 'react-app') }}
+    steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Node.js dependencies
+      run: npm install
+      working-directory: react-app
+
+    - name: Run React.js tests
+      run: npm test
+      working-directory: react-app
+
+    - name: Build Docker image
+      run: docker compose build 
+      working-directory: react-app
+
+  deno:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: ${{ contains(github.event.inputs.target_service, 'node_server') }}
+    steps:
+    - name: Set up Deno
+      uses: denolib/setup-deno@v2
+      with:
+        deno-version: '1.x'
+
+    - name: Run Deno tests
+      run: deno task test
+      working-directory: deno_server
+
+    - name: Build Docker image
+      run: docker build . -t deno-app
+      working-directory: deno_server
+  
+  python:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: ${{ contains(github.event.inputs.target_service, 'python_server') }}
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+      working-directory: python_server
+
+    - name: Run Python tests
+      run: pytest
+      working-directory: python_server
+
+    - name: Build Docker image
+      run: docker build . -t python-app
+      working-directory: python_server
+
+  go:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: ${{ contains(github.event.inputs.target_service, 'go_server') }}
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.16'
+
+    - name: Run Go tests
+      run: go test ./...
+      working-directory: go_server
+
+    - name: Build Docker image
+      run: docker build . -t go-app
+      working-directory: go_server
+
+  springboot:
+    runs-on: ubuntu-latest
+    needs: checkout
+    if: ${{ contains(github.event.inputs.target_service, 'springboot') }}
+    steps:
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'  # Specify the Java distribution
+        java-version: '11'
+
+    - name: Install Maven dependencies
+      run: mvn install
+      working-directory: springboot
+
+    - name: Run Spring Boot tests
+      run: mvn test
+      working-directory: springboot
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build Docker image
+      run: docker build . -t springboot-app
+      working-directory: springboot
