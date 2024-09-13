@@ -69,7 +69,7 @@ jobs:
       working-directory: python_server
 
     - name: Run Python tests
-      run: pytest
+      run: PYTHONPATH=$(pwd) pytest
       working-directory: python_server
 
     - name: Build Docker image
