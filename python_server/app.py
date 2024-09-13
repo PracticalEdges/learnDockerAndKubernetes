@@ -1,6 +1,6 @@
 # app.py
 from flask import Flask
-from .router.pokemon import poke_bp
+from router.pokemon import poke_bp
 
 
 def create_app():
